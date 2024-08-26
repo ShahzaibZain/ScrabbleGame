@@ -44632,7 +44632,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 60348e23b16fdfc4bab458500589d6f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8748035ebd54164d844dffeb3a00639, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -44661,7 +44661,23 @@ MonoBehaviour:
   dragTile: {fileID: 5551312501205874080, guid: a5b66ee25c6fbe946ae85fcec97aae5d, type: 3}
   gridSize: {x: 15, y: 15}
   tileFactor: 0.875
-  tileReferences: []
+  tileReferences:
+  - type: 4
+    position: {fileID: 7029769367487932322}
+  - type: 0
+    position: {fileID: 3881412391570399408}
+  - type: 0
+    position: {fileID: 768361981357709609}
+  - type: 1
+    position: {fileID: 246075547481409127}
+  - type: 0
+    position: {fileID: 7472503114912754228}
+  - type: 0
+    position: {fileID: 6163527207357629841}
+  - type: 0
+    position: {fileID: 3228844030675465726}
+  - type: 4
+    position: {fileID: 141180253298990771}
   tileColor: {r: 0.8745099, g: 0.7176471, b: 0.48235297, a: 1}
   optionTiles:
   - {fileID: 0}
@@ -44677,7 +44693,7 @@ MonoBehaviour:
   onTurnSkip: {fileID: 0}
   wordsConstructed: []
   dic: {fileID: 4900000, guid: f42df5220f5132d40a35c2a376909bd6, type: 3}
-  emptyBoard: 1
+  emptyBoard: 0
   baseTiles:
   - {fileID: 7029769367487932322}
   - {fileID: 3881412391570399408}

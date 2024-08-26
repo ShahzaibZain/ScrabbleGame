@@ -32,6 +32,13 @@ public class BoardController : MonoBehaviour
     public GameObject baseTile;
     public GameObject dragTile;
 	
+    public GameObject player1controls;
+    public GameObject player2controls;
+    public Button P1PauseBtn;
+    public Button P2PauseBtn;
+    public GameObject P1PausePanel;
+    public GameObject P2PausePanel;
+
     public Vector2 gridSize;
     public float tileFactor;
     public List<TileReferences> tileReferences;
@@ -50,8 +57,9 @@ public class BoardController : MonoBehaviour
     private string str = "EEEEEEEEEEEEAAAAAAAAAIIIIIIIIIOOOOOOOONNNNNNTTTTTTLLLLSSSSUUUUDDDDGGGBBCCMMPPFFHHVVYYKJXQZ";
     private List<string> lettersStr;
     private Dictionary<string, int> scoring;
-    public Button btnVsPlayer;
-    public Button btnVsCPU;
+    public Button easy;
+    public Button medium;
+    public Button hard;
     public Button btnExit;
     public Text cpuOrOpponent;
     public Text cpuOrOpponentScore;
@@ -63,27 +71,13 @@ public class BoardController : MonoBehaviour
     public GameObject panelGameUI;
     public GameObject gameplay;
 
-    public Button btnBack;
-    public Button btnToHome;
-    public Button btnContinue;
-    public GameObject panelPause;
-
     public Text wonplayer1txt;
     public Text wonplayer2txt;
     public Button wonhome;
 
-    public GameObject panelSettings;
-    public Button btnSettings;
-    public Button btnSettingsClose;
-    public Button board1;
-    public Button board2;
-    public Toggle music;
     public SpriteRenderer board;
-    public AudioSource audioSource;
-    public Sprite[] boards;
     
     public bool vsPlayerMode;
-    public bool vsCPUMode;
     public int playerTurn;
 
     public int player1Score;
@@ -91,26 +85,20 @@ public class BoardController : MonoBehaviour
     private void Start()
     {
         player1Score = player2Score = 0;
-        btnSettings.onClick.AddListener(() => { panelSettings.SetActive(true); });
-        btnSettingsClose.onClick.AddListener(() => { panelSettings.SetActive(false); });
-
-        music.isOn = PlayerPrefs.GetInt("music", 1) == 1 ? true : false;
-
-        board1.onClick.AddListener(() => { PlayerPrefs.SetInt("board", 0); });
-        board2.onClick.AddListener(() => { PlayerPrefs.SetInt("board", 1); });
-        music.onValueChanged.AddListener((value) => { PlayerPrefs.SetInt("music", value == true ? 1 : 0); audioSource.enabled = value; });
-
+       
         onWordSubmit.onClick.AddListener(ClickSubmit);
         onWordShuffle.onClick.AddListener(ClickShuffle);
         onTurnSkip.onClick.AddListener(ClickSkip);
         dicWords = new List<string>(dic.text.Split(new char[] { '\r', '\n' }));
         btnExit.onClick.AddListener(Application.Quit);
-        btnVsCPU.onClick.AddListener(SetGameWithAI);
-        btnVsPlayer.onClick.AddListener(SetGameWithPlayer);
+        easy.onClick.AddListener(SetGameWithPlayer);
+        medium.onClick.AddListener(SetGameWithPlayer);
+        hard.onClick.AddListener(SetGameWithPlayer);
 
-        btnBack.onClick.AddListener(() => { gameplay.SetActive(false); panelPause.SetActive(true); });
-        btnContinue.onClick.AddListener(() => { gameplay.SetActive(true); panelPause.SetActive(false); });
-        btnToHome.onClick.AddListener(() => { SceneManager.LoadScene(0); });
+        P1PauseBtn.onClick.AddListener(() => { gameplay.SetActive(false); P1PausePanel.SetActive(true); });
+        P2PauseBtn.onClick.AddListener(() => { gameplay.SetActive(false); P2PausePanel.SetActive(true); });
+        /*btnContinue.onClick.AddListener(() => { gameplay.SetActive(true); panelPause.SetActive(false); });
+        btnToHome.onClick.AddListener(() => { SceneManager.LoadScene(0); });*/
 
         wonhome.onClick.AddListener(() => { SceneManager.LoadScene(0); });
 
@@ -127,7 +115,7 @@ public class BoardController : MonoBehaviour
     }
     private void init()
     {
-        board.sprite = boards[PlayerPrefs.GetInt("board", 0)];
+        //board.sprite = boards[PlayerPrefs.GetInt("board", 0)];
         //Vector2 newPosition = new Vector2(-Mathf.Ceil(gridSize.x / 2) * tileFactor,
         //                                  Mathf.Floor(gridSize.y / 2) * tileFactor);
         //baseTiles = new List<GameObject>();
@@ -148,8 +136,6 @@ public class BoardController : MonoBehaviour
 
         if (vsPlayerMode)
             playerTurn = 2;
-        if (vsCPUMode)
-            playerTurn = 0;
 
         scoring = new Dictionary<string, int>();
         scoring.Add("A", 1);
@@ -189,19 +175,13 @@ public class BoardController : MonoBehaviour
     private void SetGameWithPlayer()
     {
         vsPlayerMode = true;
-        vsCPUMode = false;
         init();
         ChangeTurn();
         panelMainMenu.SetActive(false);
         panelGameUI.SetActive(true);
         gameplay.SetActive(true);
     }
-    private void SetGameWithAI()
-    {
-        /*vsPlayerMode = false;
-        vsCPUMode = true;
-        init();*/
-    }
+
     private void ClickSkip()
     {
         ChangeTurn();
@@ -240,28 +220,29 @@ public class BoardController : MonoBehaviour
             if (playerTurn == 1)
             {
                 playerTurn = 2;
+                SetControlsInteractable(player1controls, false); // Disable controls for Player 1
+                SetControlsInteractable(player2controls, true);  // Enable controls for Player 2
                 txtTurn.text = "Player 2 Turn";
             }
             else if (playerTurn == 2)
             {
                 playerTurn = 1;
+                SetControlsInteractable(player2controls, false); // Disable controls for Player 2
+                SetControlsInteractable(player1controls, true);  // Enable controls for Player 1
                 txtTurn.text = "Player 1 Turn";
             }
         }
-        else if (vsCPUMode)
+    }
+
+    private void SetControlsInteractable(GameObject controls, bool interactable)
+    {
+        // Enable or disable all buttons in the given control GameObject
+        foreach (var button in controls.GetComponentsInChildren<Button>())
         {
-            if (playerTurn == 1)
-            {
-                playerTurn = 0;
-                txtTurn.text = "CPU Turn";
-            }
-            else if (playerTurn == 0)
-            {
-                playerTurn = 1;
-                txtTurn.text = "Player Turn";
-            }
+            button.interactable = interactable;
         }
     }
+
     private void ClickShuffle()
     {
         for (int i = 0; i < 10; i++)
