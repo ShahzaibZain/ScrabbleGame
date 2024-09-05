@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public Text P2_Score;
     public Text P1_TargetScore;
     public Text P2_TargetScore;
+    public int WordTarget;
 
 
     // Start is called before the first frame update

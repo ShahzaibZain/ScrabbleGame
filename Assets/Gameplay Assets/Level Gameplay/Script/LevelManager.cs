@@ -6,6 +6,9 @@ public class LevelManager : MonoBehaviour
     private int easyTargetScore = 100;
     private int mediumTargetScore = 50;
     private int difficultTargetScore = 30;
+    private int easyWordTarget = 2;
+    private int mediumWordTarget = 3;
+    private int difficultWordTarget = 4;
 
     public GameManager manager;
 
@@ -47,6 +50,7 @@ public class LevelManager : MonoBehaviour
     private void SetTargetScore()
     {
         manager.P1_TargetScore.text = manager.P2_TargetScore.text = GetTargetScore().ToString();
+        manager.WordTarget = GetWordTarget();
     }
     private int GetTargetScore()
     {
@@ -58,6 +62,18 @@ public class LevelManager : MonoBehaviour
                 return difficultTargetScore;
             default:
                 return easyTargetScore;
+        }
+    }
+    private int GetWordTarget()
+    {
+        switch (currentDifficulty)
+        {
+            case "Medium":
+                return mediumWordTarget;
+            case "Hard":
+                return difficultWordTarget;
+            default:
+                return easyWordTarget;
         }
     }
 }

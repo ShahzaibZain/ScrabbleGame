@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,7 +37,8 @@ public class BoardController : MonoBehaviour
     public float tileFactor;
     public List<TileReferences> tileReferences;
     public Color tileColor;
-    public List<GameObject> optionTiles;
+    public List<GameObject> P1optionTiles;
+    public List<GameObject> P2optionTiles;
     public List<(GameObject, string)> currentMove;
     public List<GameObject> currentHoldingMove;
     public Button onWordSubmit;
@@ -58,24 +60,31 @@ public class BoardController : MonoBehaviour
     public Text cpuOrOpponentScore;
     public Text playerscore;
     public Text txtTurn;
+    private int TurnsSkipped;
 
     [Header("Player1 Controls")]
     public GameObject player1controls;
+    public GameObject P1Blocker;
     public GameObject P1PausePanel;
     public Button P1PauseBtn;
     public Button P1Submit;
     public Button P1Shuffle;
     public Button P1PassTurn;
-
+    public GameObject P1SurrenderPanel;
+    public Text P1Score;
 
     [Header("Player2 Controls")]
     public GameObject player2controls;
+    public GameObject P2Blocker;
     public GameObject P2PausePanel;
     public Button P2PauseBtn;
     public Button P2Submit;
     public Button P2Shuffle;
     public Button P2PassTurn;
+    public GameObject P2SurrenderPanel;
+    public Text P2Score;
 
+    [Header("Misc")]
     public GameObject panelMainMenu;
     public GameObject panelGameWon;
     public GameObject panelGameUI;
@@ -101,8 +110,8 @@ public class BoardController : MonoBehaviour
         P2Submit.onClick.AddListener(ClickSubmit);
 
         //onWordShuffle.onClick.AddListener(ClickShuffle);
-        P1Shuffle.onClick.AddListener(ClickShuffle);
-        P2Shuffle.onClick.AddListener(ClickShuffle);
+        P1Shuffle.onClick.AddListener(P1ClickShuffle);
+        P2Shuffle.onClick.AddListener(P2ClickShuffle);
 
         //onTurnSkip.onClick.AddListener(ClickSkip);
         P1PassTurn.onClick.AddListener(ClickSkip);
@@ -153,9 +162,7 @@ public class BoardController : MonoBehaviour
         //}
 
 
-        if (vsPlayerMode)
-            playerTurn = 2;
-
+        playerTurn = 1;
         scoring = new Dictionary<string, int>();
         scoring.Add("A", 1);
         scoring.Add("B", 3);
@@ -189,11 +196,12 @@ public class BoardController : MonoBehaviour
             lettersStr.Add(Convert.ToString(item));
         }
         emptyBoard = true;
-        NextMove();
+        NextMove(P1optionTiles);
+        NextMove(P2optionTiles);
     }
     private void SetGameWithPlayer()
     {
-        vsPlayerMode = true;
+        //vsPlayerMode = true;
         init();
         ChangeTurn();
         panelMainMenu.SetActive(false);
@@ -203,7 +211,22 @@ public class BoardController : MonoBehaviour
 
     private void ClickSkip()
     {
-        ChangeTurn();
+        TurnsSkipped++;
+        if (TurnsSkipped < 3)
+        {
+            ChangeTurn();
+        }
+        if (TurnsSkipped >= 3)
+        {
+            if (playerTurn == 1)
+            {
+                P1SurrenderPanel.SetActive(true);
+            }
+            else if (playerTurn == 2)
+            {
+                P2SurrenderPanel.SetActive(true);
+            }
+        }
     }
     private void AddScore(List<string> words)
     {
@@ -219,13 +242,13 @@ public class BoardController : MonoBehaviour
         {
             case 1:
                 sum += player1Score;
-                playerscore.text = sum.ToString();
+                P1Score.text = sum.ToString();
                 player1Score = sum;
                 break;
             case 2:
             case 0:
                 sum += player2Score;
-                cpuOrOpponentScore.text = sum.ToString();
+                P2Score.text = sum.ToString();
                 player2Score = sum;
                 break;
             default:
@@ -234,35 +257,44 @@ public class BoardController : MonoBehaviour
     }
     private void ChangeTurn()
     {
-        if (vsPlayerMode)
+        if (playerTurn == 1)
         {
-            if (playerTurn == 1)
-            {
-                playerTurn = 2;
-                SetControlsInteractable(player1controls, false); // Disable controls for Player 1
-                SetControlsInteractable(player2controls, true);  // Enable controls for Player 2
-                txtTurn.text = "Player 2 Turn";
-            }
-            else if (playerTurn == 2)
-            {
-                playerTurn = 1;
-                SetControlsInteractable(player2controls, false); // Disable controls for Player 2
-                SetControlsInteractable(player1controls, true);  // Enable controls for Player 1
-                txtTurn.text = "Player 1 Turn";
-            }
+            playerTurn = 2;
+            SetControlsInteractable(player1controls, false, P1Blocker); // Disable controls for Player 1
+            SetControlsInteractable(player2controls, true, P2Blocker);  // Enable controls for Player 2
+            this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
+            txtTurn.text = "Player 2 Turn";
+        }
+        else if (playerTurn == 2)
+        {
+            playerTurn = 1;
+            this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            SetControlsInteractable(player2controls, false, P2Blocker); // Disable controls for Player 2
+            SetControlsInteractable(player1controls, true, P1Blocker);  // Enable controls for Player 1
+            txtTurn.text = "Player 1 Turn";
         }
     }
 
-    private void SetControlsInteractable(GameObject controls, bool interactable)
+    private void SetControlsInteractable(GameObject controls, bool interactable, GameObject Blocker)
     {
         // Enable or disable all buttons in the given control GameObject
         foreach (var button in controls.GetComponentsInChildren<Button>())
         {
             button.interactable = interactable;
         }
+        Blocker.SetActive(!interactable);
     }
 
-    private void ClickShuffle()
+    private void P1ClickShuffle()
+    {
+        ClickShuffle(P1optionTiles);
+    }
+    private void P2ClickShuffle()
+    {
+        ClickShuffle(P2optionTiles);
+    }
+
+    private void ClickShuffle(List<GameObject> optionTiles)
     {
         for (int i = 0; i < 10; i++)
         {
@@ -396,6 +428,7 @@ public class BoardController : MonoBehaviour
                     AddScore(wordsConstructed);
                     SetToConnected();
                     validmove();
+                    Debug.Log("Valid Move");
                     emptyBoard = false;
                 }
             }
@@ -446,6 +479,7 @@ public class BoardController : MonoBehaviour
             }
         }
         ChangeTurn();
+        TurnsSkipped = 0;
     }
     private void TrueInput()
     {
@@ -527,7 +561,7 @@ public class BoardController : MonoBehaviour
             }
         }
     }
-    private void NextMove()
+    private void NextMove(List<GameObject> optionTiles)
     {
         currentHoldingMove = new List<GameObject>();
         currentMove = new List<(GameObject, string)>();
