@@ -32,13 +32,6 @@ public class BoardController : MonoBehaviour
     public GameObject baseTile;
     public GameObject dragTile;
 	
-    public GameObject player1controls;
-    public GameObject player2controls;
-    public Button P1PauseBtn;
-    public Button P2PauseBtn;
-    public GameObject P1PausePanel;
-    public GameObject P2PausePanel;
-
     public Vector2 gridSize;
     public float tileFactor;
     public List<TileReferences> tileReferences;
@@ -66,6 +59,23 @@ public class BoardController : MonoBehaviour
     public Text playerscore;
     public Text txtTurn;
 
+    [Header("Player1 Controls")]
+    public GameObject player1controls;
+    public GameObject P1PausePanel;
+    public Button P1PauseBtn;
+    public Button P1Submit;
+    public Button P1Shuffle;
+    public Button P1PassTurn;
+
+
+    [Header("Player2 Controls")]
+    public GameObject player2controls;
+    public GameObject P2PausePanel;
+    public Button P2PauseBtn;
+    public Button P2Submit;
+    public Button P2Shuffle;
+    public Button P2PassTurn;
+
     public GameObject panelMainMenu;
     public GameObject panelGameWon;
     public GameObject panelGameUI;
@@ -86,9 +96,18 @@ public class BoardController : MonoBehaviour
     {
         player1Score = player2Score = 0;
        
-        onWordSubmit.onClick.AddListener(ClickSubmit);
-        onWordShuffle.onClick.AddListener(ClickShuffle);
-        onTurnSkip.onClick.AddListener(ClickSkip);
+        //onWordSubmit.onClick.AddListener(ClickSubmit);
+        P1Submit.onClick.AddListener(ClickSubmit);
+        P2Submit.onClick.AddListener(ClickSubmit);
+
+        //onWordShuffle.onClick.AddListener(ClickShuffle);
+        P1Shuffle.onClick.AddListener(ClickShuffle);
+        P2Shuffle.onClick.AddListener(ClickShuffle);
+
+        //onTurnSkip.onClick.AddListener(ClickSkip);
+        P1PassTurn.onClick.AddListener(ClickSkip);
+        P2PassTurn.onClick.AddListener(ClickSkip);
+
         dicWords = new List<string>(dic.text.Split(new char[] { '\r', '\n' }));
         btnExit.onClick.AddListener(Application.Quit);
         easy.onClick.AddListener(SetGameWithPlayer);
@@ -100,7 +119,7 @@ public class BoardController : MonoBehaviour
         /*btnContinue.onClick.AddListener(() => { gameplay.SetActive(true); panelPause.SetActive(false); });
         btnToHome.onClick.AddListener(() => { SceneManager.LoadScene(0); });*/
 
-        wonhome.onClick.AddListener(() => { SceneManager.LoadScene(0); });
+        //wonhome.onClick.AddListener(() => { SceneManager.LoadScene(0); });
 
         panelMainMenu.SetActive(true);
         panelGameUI.SetActive(false);

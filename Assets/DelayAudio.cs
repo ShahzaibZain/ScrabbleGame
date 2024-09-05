@@ -9,7 +9,7 @@ public class DelayAudio : MonoBehaviour
 
     public void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
