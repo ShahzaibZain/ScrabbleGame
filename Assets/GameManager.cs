@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        P1_TargetScore.text = P2_TargetScore.text = 20.ToString();
         P1_Score.text = P2_Score.text = 0.ToString();
         LevelSelectionPanel.SetActive(true);
         GameplayPanel.SetActive(false);

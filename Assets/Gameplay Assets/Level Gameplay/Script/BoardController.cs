@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -95,12 +96,19 @@ public class BoardController : MonoBehaviour
     public Button wonhome;
 
     public SpriteRenderer board;
+    public GameManager gameManager;
     
     public bool vsPlayerMode;
     public int playerTurn;
 
     public int player1Score;
     public int player2Score;
+
+    public enum Direction
+    {
+        Horizontal,
+        Vertical
+    }
     private void Start()
     {
         player1Score = player2Score = 0;
@@ -134,35 +142,46 @@ public class BoardController : MonoBehaviour
         panelGameUI.SetActive(false);
         gameplay.SetActive(false);
     }
+
+    private void CheckForWin(int playerScore)
+    {
+        int targetScore = 20;
+        if (playerScore >= targetScore)
+        {
+            Debug.Log("Player wins!");
+            // Implement the win logic here (e.g., end the game, show win screen, etc.)
+            showWon();
+        }
+    }
+
     private void showWon()
     {
         gameplay.SetActive(false);
         panelGameWon.SetActive(true);
-        wonplayer1txt.text = $"Player 1 Score : {playerscore}";
-        wonplayer2txt.text = $"Player 2 Score : {cpuOrOpponent}";
+        wonplayer1txt.text = $"Player 1 Score : {P1Score}";
+        wonplayer2txt.text = $"Player 2 Score : {P2Score}";
     }
     private void init()
     {
-        //board.sprite = boards[PlayerPrefs.GetInt("board", 0)];
-        //Vector2 newPosition = new Vector2(-Mathf.Ceil(gridSize.x / 2) * tileFactor,
-        //                                  Mathf.Floor(gridSize.y / 2) * tileFactor);
-        //baseTiles = new List<GameObject>();
-        //for (int i = 0; i < gridSize.y; i++)
-        //{
-        //    for (int j = 0; j < gridSize.x; j++)
-        //    {
-        //        newPosition.x = newPosition.x + tileFactor;
-        //        GameObject obj = Instantiate(baseTile, newPosition, Quaternion.identity, gameObject.transform);
-        //        obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        //        obj.name = $"Tile_x{j}_y{i}";
-        //        obj.GetComponentInChildren<TextMesh>().text = string.Empty;
-        //        baseTiles.Add(obj);
-        //    }
-        //    newPosition = new Vector2(-Mathf.Ceil(gridSize.x / 2) * tileFactor, newPosition.y - tileFactor);
-        //}
+/*        board.sprite = boards[PlayerPrefs.GetInt("board", 0)];
+        Vector2 newPosition = new Vector2(-Mathf.Ceil(gridSize.x / 2) * tileFactor,
+                                          Mathf.Floor(gridSize.y / 2) * tileFactor);
+        baseTiles = new List<GameObject>();
+        for (int i = 0; i < gridSize.y; i++)
+        {
+            for (int j = 0; j < gridSize.x; j++)
+            {
+                newPosition.x = newPosition.x + tileFactor;
+                GameObject obj = Instantiate(baseTile, newPosition, Quaternion.identity, gameObject.transform);
+                obj.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                obj.name = $"Tile_x{j}_y{i}";
+                obj.GetComponentInChildren<TextMesh>().text = string.Empty;
+                baseTiles.Add(obj);
+            }
+            newPosition = new Vector2(-Mathf.Ceil(gridSize.x / 2) * tileFactor, newPosition.y - tileFactor);
+        }*/
 
-
-        playerTurn = 1;
+        playerTurn = 2;
         scoring = new Dictionary<string, int>();
         scoring.Add("A", 1);
         scoring.Add("B", 3);
@@ -260,6 +279,7 @@ public class BoardController : MonoBehaviour
         if (playerTurn == 1)
         {
             playerTurn = 2;
+            SetCurrentMoveForPlayer(P2optionTiles);
             SetControlsInteractable(player1controls, false, P1Blocker); // Disable controls for Player 1
             SetControlsInteractable(player2controls, true, P2Blocker);  // Enable controls for Player 2
             this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 180);
@@ -268,6 +288,7 @@ public class BoardController : MonoBehaviour
         else if (playerTurn == 2)
         {
             playerTurn = 1;
+            SetCurrentMoveForPlayer(P1optionTiles);
             this.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             SetControlsInteractable(player2controls, false, P2Blocker); // Disable controls for Player 2
             SetControlsInteractable(player1controls, true, P1Blocker);  // Enable controls for Player 1
@@ -292,6 +313,16 @@ public class BoardController : MonoBehaviour
     private void P2ClickShuffle()
     {
         ClickShuffle(P2optionTiles);
+    }
+
+    private void SetCurrentMoveForPlayer(List<GameObject> optionTiles)
+    {
+        currentMove = new List<(GameObject, string)>();
+        foreach (var item in optionTiles)
+        {
+            var temp = (item, item.GetComponentInChildren<TextMesh>().text);
+            currentMove.Add(temp);
+        }
     }
 
     private void ClickShuffle(List<GameObject> optionTiles)
@@ -366,6 +397,7 @@ public class BoardController : MonoBehaviour
                             break;
                     }
                     thisWord = thisWord.Trim();
+                    Debug.Log("Constructed Word: " + thisWord);
                     if (thisWord != string.Empty && thisWord.Length > 1)
                     {
                         if (!wordsConstructed.Contains(thisWord))
@@ -400,10 +432,19 @@ public class BoardController : MonoBehaviour
                             break;
                     }
                     thisWord = thisWord.Trim();
-                    if (thisWord.Trim() != string.Empty && thisWord.Length > 1)
+                    Debug.Log("Constructed Word: " + thisWord);
+                    if (thisWord.Trim() != string.Empty)
                     {
-                        if (!wordsConstructed.Contains(thisWord))
-                            wordsConstructed.Add(thisWord);
+                        if (thisWord.Length > gameManager.WordTarget) //target word length check
+                        {
+                            if (!wordsConstructed.Contains(thisWord))
+                                wordsConstructed.Add(thisWord);
+                        }
+                        else
+                        {
+                            //Target word length error
+                        }
+
                     }
                     break;
                 }
@@ -412,6 +453,7 @@ public class BoardController : MonoBehaviour
         }
         foreach (var item in wordsConstructed)
         {
+            Debug.Log("Constructed Word: " + item); // See which words are being constructed
             print(item);
         }
         //return;
@@ -422,6 +464,7 @@ public class BoardController : MonoBehaviour
                 if (!currentHoldingMove.Contains(tileReferences[0].position))//ref to middle tile
                 {
                     invalidmove();
+                    Debug.Log("Empty board, not on START");
                 }
                 else
                 {
@@ -443,15 +486,160 @@ public class BoardController : MonoBehaviour
                 else
                 {
                     invalidmove();
+                    Debug.Log("Empty board, not connected");
                 }
             }
         }
         else
         {
             invalidmove();
+            Debug.Log("Empty board, invalid word");
         }
         currentHoldingMove = new List<GameObject>();
     }
+
+    /*    private void ClickSubmit()
+        {
+            bool areConnected = false;
+            wordsConstructed = new List<string>();
+
+            // Process words horizontally and vertically
+            ProcessWords(Direction.Horizontal);
+            ProcessWords(Direction.Vertical);
+
+            // Debugging and validation
+            if (wordsConstructed.Count > 0)
+            {
+                foreach (var word in wordsConstructed)
+                {
+                    Debug.Log("Constructed Word: " + word);
+                    print(word);
+                }
+            }
+            else
+            {
+                Debug.Log("Constructed Words: 0");
+            }
+
+
+
+            if (ValidWords(wordsConstructed))
+            {
+                if (emptyBoard)
+                {
+                    if (!currentHoldingMove.Contains(tileReferences[0].position)) // ref to middle tile
+                    {
+                        InvalidMove("Empty board, not on START");
+                    }
+                    else
+                    {
+                        AddScore(wordsConstructed);
+                        SetToConnected();
+                        ValidMove();
+                        Debug.Log("Valid Move");
+                        emptyBoard = false;
+                    }
+                }
+                else
+                {
+                    if (areConnected)
+                    {
+                        AddScore(wordsConstructed);
+                        SetToConnected();
+                        ValidMove();
+                    }
+                    else
+                    {
+                        InvalidMove("Empty board, not connected");
+                    }
+                }
+            }
+            else
+            {
+                InvalidMove("Empty board, invalid word");
+            }
+
+            currentHoldingMove.Clear();
+        }
+
+        private void ProcessWords(Direction direction)
+        {
+            bool areConnected;
+            foreach (var move in currentHoldingMove)
+            {
+                int indexBase = baseTiles.IndexOf(move);
+                int step = direction == Direction.Horizontal ? 1 : 15;
+                int limit = (int)(direction == Direction.Horizontal ? gridSize.x : gridSize.y);
+                Debug.Log($"Processing {direction} from index: {indexBase}");
+
+                while (indexBase % limit >= 0)
+                {
+                    Debug.Log($"IndexBase: {indexBase}, Limit: {limit}");
+
+                    if (IsTileOccupied(indexBase))
+                    {
+                        if (baseTiles[indexBase].GetComponent<tile>().connected)
+                            areConnected = true;
+
+                        indexBase -= step;
+                        if (indexBase < 0)
+                            break;
+                    }
+                    else
+                    {
+                        indexBase += step;
+                        string word = CollectWord(ref indexBase, step, limit);
+                        if (!string.IsNullOrWhiteSpace(word) && word.Length > 1)
+                        {
+                            if (!wordsConstructed.Contains(word))
+                                wordsConstructed.Add(word);
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
+        private string CollectWord(ref int indexBase, int step, int limit)
+        {
+            bool areConnected;
+            string word = "";
+            Debug.Log($"Collecting word starting at index: {indexBase}");
+
+            while (IsTileOccupied(indexBase))
+            {
+                if (baseTiles[indexBase].GetComponent<tile>().connected)
+                    areConnected = true;
+
+                word += baseTiles[indexBase].GetComponentInChildren<TextMesh>().text;
+                indexBase += step;
+                if (indexBase >= limit * limit)
+                    break;
+            }
+            word = word.Trim();
+            Debug.Log($"Collected Word: {word}");
+            return word;
+        }
+
+        private bool IsTileOccupied(int index)
+        {
+            var textMesh = baseTiles[index].GetComponentInChildren<TextMesh>();
+            bool isOccupied = textMesh != null && !string.IsNullOrEmpty(textMesh.text);
+            Debug.Log($"Tile at index {index} occupied: {isOccupied}");
+            return isOccupied;
+        }*/
+
+    private void InvalidMove(string message)
+    {
+        invalidmove();
+        Debug.Log(message);
+    }
+
+    private void ValidMove()
+    {
+        validmove();
+    }
+
     public void invalidmove()
     {
         foreach (var item in currentMove)

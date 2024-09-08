@@ -44679,14 +44679,8 @@ MonoBehaviour:
   - type: 4
     position: {fileID: 141180253298990771}
   tileColor: {r: 0.8745099, g: 0.7176471, b: 0.48235297, a: 1}
-  optionTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  P1optionTiles: []
+  P2optionTiles: []
   currentHoldingMove: []
   onWordSubmit: {fileID: 0}
   onWordShuffle: {fileID: 0}
@@ -44920,35 +44914,41 @@ MonoBehaviour:
   - {fileID: 6984232102817190530}
   - {fileID: 1377039913456315247}
   - {fileID: 1461210841064463294}
-  btnVsPlayer: {fileID: 0}
-  btnVsCPU: {fileID: 0}
+  easy: {fileID: 0}
+  medium: {fileID: 0}
+  hard: {fileID: 0}
   btnExit: {fileID: 0}
   cpuOrOpponent: {fileID: 0}
   cpuOrOpponentScore: {fileID: 0}
   playerscore: {fileID: 0}
   txtTurn: {fileID: 0}
+  player1controls: {fileID: 0}
+  P1Blocker: {fileID: 0}
+  P1PausePanel: {fileID: 0}
+  P1PauseBtn: {fileID: 0}
+  P1Submit: {fileID: 0}
+  P1Shuffle: {fileID: 0}
+  P1PassTurn: {fileID: 0}
+  P1SurrenderPanel: {fileID: 0}
+  P1Score: {fileID: 0}
+  player2controls: {fileID: 0}
+  P2Blocker: {fileID: 0}
+  P2PausePanel: {fileID: 0}
+  P2PauseBtn: {fileID: 0}
+  P2Submit: {fileID: 0}
+  P2Shuffle: {fileID: 0}
+  P2PassTurn: {fileID: 0}
+  P2SurrenderPanel: {fileID: 0}
+  P2Score: {fileID: 0}
   panelMainMenu: {fileID: 0}
   panelGameWon: {fileID: 0}
   panelGameUI: {fileID: 0}
   gameplay: {fileID: 0}
-  btnBack: {fileID: 0}
-  btnToHome: {fileID: 0}
-  btnContinue: {fileID: 0}
-  panelPause: {fileID: 0}
   wonplayer1txt: {fileID: 0}
   wonplayer2txt: {fileID: 0}
   wonhome: {fileID: 0}
-  panelSettings: {fileID: 0}
-  btnSettings: {fileID: 0}
-  btnSettingsClose: {fileID: 0}
-  board1: {fileID: 0}
-  board2: {fileID: 0}
-  music: {fileID: 0}
   board: {fileID: 0}
-  audioSource: {fileID: 0}
-  boards: []
   vsPlayerMode: 0
-  vsCPUMode: 0
   playerTurn: 0
   player1Score: 0
   player2Score: 0

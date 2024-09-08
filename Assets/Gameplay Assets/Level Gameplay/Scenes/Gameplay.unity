@@ -4877,6 +4877,10 @@ PrefabInstance:
       propertyPath: P2optionTiles.Array.data[6]
       value: 
       objectReference: {fileID: 809916526}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: tileReferences.Array.data[0].type
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7403373808901329238, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

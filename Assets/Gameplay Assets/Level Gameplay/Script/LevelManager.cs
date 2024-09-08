@@ -3,9 +3,9 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private string currentDifficulty;
-    private int easyTargetScore = 100;
+/*    private int easyTargetScore = 100;
     private int mediumTargetScore = 50;
-    private int difficultTargetScore = 30;
+    private int difficultTargetScore = 30;*/
     private int easyWordTarget = 2;
     private int mediumWordTarget = 3;
     private int difficultWordTarget = 4;
@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     public void SetDifficulty(string difficulty)
     {
         currentDifficulty = difficulty;
-        SetTargetScore();
+        SetTarget();
     }
 
 /*    public void AddPointsToPlayer(int playerNumber, int points)
@@ -47,12 +47,12 @@ public class LevelManager : MonoBehaviour
         }
     }*/
 
-    private void SetTargetScore()
+    private void SetTarget()
     {
-        manager.P1_TargetScore.text = manager.P2_TargetScore.text = GetTargetScore().ToString();
+        //manager.P1_TargetScore.text = manager.P2_TargetScore.text = GetTargetScore().ToString();
         manager.WordTarget = GetWordTarget();
     }
-    private int GetTargetScore()
+/*    private int GetTargetScore()
     {
         switch (currentDifficulty)
         {
@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
             default:
                 return easyTargetScore;
         }
-    }
+    }*/
     private int GetWordTarget()
     {
         switch (currentDifficulty)
