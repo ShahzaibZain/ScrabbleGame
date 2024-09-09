@@ -805,6 +805,85 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 951403731537203950, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
   m_PrefabInstance: {fileID: 959874396}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &148199142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148199143}
+  - component: {fileID: 148199145}
+  - component: {fileID: 148199144}
+  m_Layer: 0
+  m_Name: P1Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &148199143
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148199142}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 719486170}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 96.211044, y: 10}
+  m_SizeDelta: {x: 32.306, y: 38.5087}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &148199144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148199142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 150
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 56
+--- !u!222 &148199145
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148199142}
+  m_CullTransparentMesh: 0
 --- !u!1 &153999370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2097073260383785364, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
@@ -1176,6 +1255,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190397015}
+  m_CullTransparentMesh: 0
+--- !u!1 &196585079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196585080}
+  - component: {fileID: 196585082}
+  - component: {fileID: 196585081}
+  m_Layer: 0
+  m_Name: P1ScoreText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &196585080
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196585079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 719486170}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -20.225887, y: 10}
+  m_SizeDelta: {x: 184.2759, y: 38.5087}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &196585081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196585079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 150
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Player1 Score:'
+--- !u!222 &196585082
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196585079}
   m_CullTransparentMesh: 0
 --- !u!1 &197409160 stripped
 GameObject:
@@ -3640,7 +3798,9 @@ RectTransform:
   - {fileID: 576786675}
   - {fileID: 2065058853}
   - {fileID: 1965032415}
-  - {fileID: 1042882600}
+  - {fileID: 196585080}
+  - {fileID: 1013879620}
+  - {fileID: 148199143}
   m_Father: {fileID: 88161821}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4519,20 +4679,28 @@ MonoBehaviour:
   player1controls: {fileID: 0}
   P1Blocker: {fileID: 0}
   P1PausePanel: {fileID: 0}
+  P1Continue: {fileID: 0}
+  P1Quit: {fileID: 0}
   P1PauseBtn: {fileID: 0}
   P1Submit: {fileID: 0}
   P1Shuffle: {fileID: 0}
   P1PassTurn: {fileID: 0}
   P1SurrenderPanel: {fileID: 0}
+  P1ConfirmSurrender: {fileID: 0}
+  P1NoSurrender: {fileID: 0}
   P1Score: {fileID: 0}
   player2controls: {fileID: 0}
   P2Blocker: {fileID: 0}
   P2PausePanel: {fileID: 0}
+  P2Continue: {fileID: 0}
+  P2Quit: {fileID: 0}
   P2PauseBtn: {fileID: 0}
   P2Submit: {fileID: 0}
   P2Shuffle: {fileID: 0}
   P2PassTurn: {fileID: 0}
   P2SurrenderPanel: {fileID: 0}
+  P2ConfirmSurrender: {fileID: 0}
+  P2NoSurrender: {fileID: 0}
   P2Score: {fileID: 0}
   panelMainMenu: {fileID: 0}
   panelGameWon: {fileID: 0}
@@ -4541,7 +4709,9 @@ MonoBehaviour:
   wonplayer1txt: {fileID: 0}
   wonplayer2txt: {fileID: 0}
   wonhome: {fileID: 0}
+  Result: {fileID: 0}
   board: {fileID: 0}
+  gameManager: {fileID: 0}
   vsPlayerMode: 0
   playerTurn: 0
   player1Score: 0
@@ -4658,6 +4828,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1319991340}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P1Quit
+      value: 
+      objectReference: {fileID: 65263834}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P2Quit
+      value: 
+      objectReference: {fileID: 273284750}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: Result
+      value: 
+      objectReference: {fileID: 576786676}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: medium
       value: 
       objectReference: {fileID: 805761427}
@@ -4677,6 +4859,10 @@ PrefabInstance:
       propertyPath: txtTurn
       value: 
       objectReference: {fileID: 996749042}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: wonhome
+      value: 
+      objectReference: {fileID: 2065058854}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: P1Submit
       value: 
@@ -4710,6 +4896,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1682851369}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P1Continue
+      value: 
+      objectReference: {fileID: 510001575}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: P1PassTurn
       value: 
       objectReference: {fileID: 190397017}
@@ -4717,6 +4907,10 @@ PrefabInstance:
       propertyPath: P1PauseBtn
       value: 
       objectReference: {fileID: 142982062}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P2Continue
+      value: 
+      objectReference: {fileID: 1073404610}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: P2PassTurn
       value: 
@@ -4733,6 +4927,10 @@ PrefabInstance:
       propertyPath: btnVsPlayer
       value: 
       objectReference: {fileID: 1914199529}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2082650161}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: panelGameUI
       value: 
@@ -4754,6 +4952,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 115758586}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: panelGameWon
+      value: 
+      objectReference: {fileID: 88161820}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P1NoSurrender
+      value: 
+      objectReference: {fileID: 1958950779}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P2NoSurrender
+      value: 
+      objectReference: {fileID: 1405523086}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: cpuOrOpponent
       value: 
       objectReference: {fileID: 0}
@@ -4765,6 +4975,14 @@ PrefabInstance:
       propertyPath: panelMainMenu
       value: 
       objectReference: {fileID: 379242011}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: wonplayer1txt
+      value: 
+      objectReference: {fileID: 148199144}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: wonplayer2txt
+      value: 
+      objectReference: {fileID: 1013879621}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: player1controls
       value: 
@@ -4781,6 +4999,14 @@ PrefabInstance:
       propertyPath: P2SurrenderPanel
       value: 
       objectReference: {fileID: 484552363}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P1ConfirmSurrender
+      value: 
+      objectReference: {fileID: 1407323565}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: P2ConfirmSurrender
+      value: 
+      objectReference: {fileID: 1528766179}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: cpuOrOpponentScore
       value: 
@@ -4821,6 +5047,10 @@ PrefabInstance:
       propertyPath: optionTiles.Array.data[6]
       value: 
       objectReference: {fileID: 500659433}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: tileReferences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: P1optionTiles.Array.data[0]
       value: 
@@ -4881,6 +5111,10 @@ PrefabInstance:
       propertyPath: tileReferences.Array.data[0].type
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7403373808901329237, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: tileReferences.Array.data[0].position
+      value: 
+      objectReference: {fileID: 197855134}
     - target: {fileID: 7403373808901329238, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4924,6 +5158,10 @@ PrefabInstance:
     - target: {fileID: 7403373808901329239, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
       propertyPath: m_Name
       value: new board (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7403373808901329239, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5118,12 +5356,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 782130077527325057, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
   m_PrefabInstance: {fileID: 959874396}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1023935672 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6264280121950881869, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
-  m_PrefabInstance: {fileID: 959874396}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1042882599
+--- !u!1 &1013879619
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5131,23 +5364,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1042882600}
-  - component: {fileID: 1042882602}
-  - component: {fileID: 1042882601}
+  - component: {fileID: 1013879620}
+  - component: {fileID: 1013879622}
+  - component: {fileID: 1013879621}
   m_Layer: 0
-  m_Name: Text (2)
+  m_Name: P2Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1042882600
+--- !u!224 &1013879620
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042882599}
+  m_GameObject: {fileID: 1013879619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5157,16 +5390,16 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 224.72781, y: 38.508682}
+  m_AnchoredPosition: {x: 96.211044, y: -38}
+  m_SizeDelta: {x: 32.306, y: 38.5087}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1042882601
+--- !u!114 &1013879621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042882599}
+  m_GameObject: {fileID: 1013879619}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -5193,15 +5426,20 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1 Score  :  56'
---- !u!222 &1042882602
+  m_Text: 56
+--- !u!222 &1013879622
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042882599}
+  m_GameObject: {fileID: 1013879619}
   m_CullTransparentMesh: 0
+--- !u!1 &1023935672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6264280121950881869, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
+  m_PrefabInstance: {fileID: 959874396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1043673868 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8213550121036945511, guid: e01791031b4f03f4ba507f5f6abbf767, type: 3}
@@ -6745,7 +6983,7 @@ GameObject:
   - component: {fileID: 1405523087}
   - component: {fileID: 1405523086}
   m_Layer: 0
-  m_Name: btnHmme
+  m_Name: btnNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6866,7 +7104,7 @@ GameObject:
   - component: {fileID: 1407323566}
   - component: {fileID: 1407323565}
   m_Layer: 0
-  m_Name: btnContinue
+  m_Name: btnyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7426,7 +7664,7 @@ GameObject:
   - component: {fileID: 1528766180}
   - component: {fileID: 1528766179}
   m_Layer: 0
-  m_Name: btnContinue
+  m_Name: btnYes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8274,20 +8512,28 @@ MonoBehaviour:
   player1controls: {fileID: 0}
   P1Blocker: {fileID: 0}
   P1PausePanel: {fileID: 0}
+  P1Continue: {fileID: 0}
+  P1Quit: {fileID: 0}
   P1PauseBtn: {fileID: 0}
   P1Submit: {fileID: 0}
   P1Shuffle: {fileID: 0}
   P1PassTurn: {fileID: 0}
   P1SurrenderPanel: {fileID: 0}
+  P1ConfirmSurrender: {fileID: 0}
+  P1NoSurrender: {fileID: 0}
   P1Score: {fileID: 0}
   player2controls: {fileID: 0}
   P2Blocker: {fileID: 0}
   P2PausePanel: {fileID: 0}
+  P2Continue: {fileID: 0}
+  P2Quit: {fileID: 0}
   P2PauseBtn: {fileID: 0}
   P2Submit: {fileID: 0}
   P2Shuffle: {fileID: 0}
   P2PassTurn: {fileID: 0}
   P2SurrenderPanel: {fileID: 0}
+  P2ConfirmSurrender: {fileID: 0}
+  P2NoSurrender: {fileID: 0}
   P2Score: {fileID: 0}
   panelMainMenu: {fileID: 379242011}
   panelGameWon: {fileID: 0}
@@ -8296,7 +8542,9 @@ MonoBehaviour:
   wonplayer1txt: {fileID: 0}
   wonplayer2txt: {fileID: 1965032416}
   wonhome: {fileID: 2065058854}
+  Result: {fileID: 0}
   board: {fileID: 1319991340}
+  gameManager: {fileID: 0}
   vsPlayerMode: 0
   playerTurn: 0
   player1Score: 0
@@ -10167,7 +10415,7 @@ GameObject:
   - component: {fileID: 1958950780}
   - component: {fileID: 1958950779}
   m_Layer: 0
-  m_Name: btnHmme
+  m_Name: btnNo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10287,7 +10535,7 @@ GameObject:
   - component: {fileID: 1965032417}
   - component: {fileID: 1965032416}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: P2ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10309,8 +10557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -38}
-  m_SizeDelta: {x: 224.72781, y: 38.508682}
+  m_AnchoredPosition: {x: -20.225887, y: -38}
+  m_SizeDelta: {x: 184.2759, y: 38.5087}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1965032416
 MonoBehaviour:
@@ -10345,7 +10593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1 Score  :  56'
+  m_Text: 'Player2 Score:'
 --- !u!222 &1965032417
 CanvasRenderer:
   m_ObjectHideFlags: 0

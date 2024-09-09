@@ -67,22 +67,30 @@ public class BoardController : MonoBehaviour
     public GameObject player1controls;
     public GameObject P1Blocker;
     public GameObject P1PausePanel;
+    public Button P1Continue;
+    public Button P1Quit;
     public Button P1PauseBtn;
     public Button P1Submit;
     public Button P1Shuffle;
     public Button P1PassTurn;
     public GameObject P1SurrenderPanel;
+    public Button P1ConfirmSurrender;
+    public Button P1NoSurrender;
     public Text P1Score;
 
     [Header("Player2 Controls")]
     public GameObject player2controls;
     public GameObject P2Blocker;
     public GameObject P2PausePanel;
+    public Button P2Continue;
+    public Button P2Quit;
     public Button P2PauseBtn;
     public Button P2Submit;
     public Button P2Shuffle;
     public Button P2PassTurn;
     public GameObject P2SurrenderPanel;
+    public Button P2ConfirmSurrender;
+    public Button P2NoSurrender;
     public Text P2Score;
 
     [Header("Misc")]
@@ -94,6 +102,7 @@ public class BoardController : MonoBehaviour
     public Text wonplayer1txt;
     public Text wonplayer2txt;
     public Button wonhome;
+    public Text Result;
 
     public SpriteRenderer board;
     public GameManager gameManager;
@@ -131,8 +140,20 @@ public class BoardController : MonoBehaviour
         medium.onClick.AddListener(SetGameWithPlayer);
         hard.onClick.AddListener(SetGameWithPlayer);
 
+        P1Quit.onClick.AddListener(() => { gameplay.SetActive(false); P1SurrenderPanel.SetActive(true); });
+        P2Quit.onClick.AddListener(() => { gameplay.SetActive(false); P2SurrenderPanel.SetActive(true); });
+
         P1PauseBtn.onClick.AddListener(() => { gameplay.SetActive(false); P1PausePanel.SetActive(true); });
+        P1Continue.onClick.AddListener(() => { gameplay.SetActive(true); P1PausePanel.SetActive(false); });
         P2PauseBtn.onClick.AddListener(() => { gameplay.SetActive(false); P2PausePanel.SetActive(true); });
+        P2Continue.onClick.AddListener(() => { gameplay.SetActive(true); P2PausePanel.SetActive(false); });
+        P1ConfirmSurrender.onClick.AddListener(P1Surrendered);
+        P1NoSurrender.onClick.AddListener(() => { gameplay.SetActive(true); P1SurrenderPanel.SetActive(false); });
+        P2ConfirmSurrender.onClick.AddListener(P2Surrendered);
+        P2NoSurrender.onClick.AddListener(() => { gameplay.SetActive(true); P2SurrenderPanel.SetActive(false); });
+
+        wonhome.onClick.AddListener(GoToHome);
+
         /*btnContinue.onClick.AddListener(() => { gameplay.SetActive(true); panelPause.SetActive(false); });
         btnToHome.onClick.AddListener(() => { SceneManager.LoadScene(0); });*/
 
@@ -143,23 +164,38 @@ public class BoardController : MonoBehaviour
         gameplay.SetActive(false);
     }
 
-    private void CheckForWin(int playerScore)
+    private void GoToHome()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void CheckForWin(int playerScore, string result)
     {
         int targetScore = 20;
         if (playerScore >= targetScore)
         {
             Debug.Log("Player wins!");
             // Implement the win logic here (e.g., end the game, show win screen, etc.)
-            showWon();
+            showWon(result);
         }
     }
 
-    private void showWon()
+    private void P1Surrendered()
+    {
+        showWon("Player1 Surrendered");
+    }
+    private void P2Surrendered()
+    {
+        showWon("Player2 Surrendered");
+    }
+
+    private void showWon(string result)
     {
         gameplay.SetActive(false);
         panelGameWon.SetActive(true);
-        wonplayer1txt.text = $"Player 1 Score : {P1Score}";
-        wonplayer2txt.text = $"Player 2 Score : {P2Score}";
+        Result.text = result;
+        wonplayer1txt.text = player1Score.ToString();
+        wonplayer2txt.text = player2Score.ToString();
     }
     private void init()
     {
@@ -263,12 +299,14 @@ public class BoardController : MonoBehaviour
                 sum += player1Score;
                 P1Score.text = sum.ToString();
                 player1Score = sum;
+                CheckForWin(player1Score, "Player1 Won!");
                 break;
             case 2:
             case 0:
                 sum += player2Score;
                 P2Score.text = sum.ToString();
                 player2Score = sum;
+                CheckForWin(player2Score, "Player2 Won!");
                 break;
             default:
                 break;
@@ -350,7 +388,8 @@ public class BoardController : MonoBehaviour
     {
         if(lettersStr.Count == 0)
         {
-            showWon();
+            string playername = player1Score > player2Score ? "Player1" : "Player2";
+            showWon(playername);
             return string.Empty;
         }
         int index = Random.Range(0, lettersStr.Count);
@@ -627,7 +666,7 @@ public class BoardController : MonoBehaviour
             bool isOccupied = textMesh != null && !string.IsNullOrEmpty(textMesh.text);
             Debug.Log($"Tile at index {index} occupied: {isOccupied}");
             return isOccupied;
-        }*/
+        }
 
     private void InvalidMove(string message)
     {
@@ -638,7 +677,7 @@ public class BoardController : MonoBehaviour
     private void ValidMove()
     {
         validmove();
-    }
+    }*/
 
     public void invalidmove()
     {

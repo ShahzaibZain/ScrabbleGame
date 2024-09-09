@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         P2PausePanel.SetActive(false);
     }
 
-    public void PauseGame()
+    public void Home()
     {
 
     }
