@@ -437,7 +437,7 @@ public class BoardController : MonoBehaviour
                     }
                     thisWord = thisWord.Trim();
                     Debug.Log("Constructed Word: " + thisWord);
-                    if (thisWord != string.Empty && thisWord.Length > 1)
+                    if (thisWord != string.Empty && thisWord.Length > gameManager.WordTarget)
                     {
                         if (!wordsConstructed.Contains(thisWord))
                             wordsConstructed.Add(thisWord);
